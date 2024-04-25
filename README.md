@@ -1,0 +1,1 @@
+I learned about docker routing, this gave me the most problems. Seeing how to connect node.js with the database was really cool.
