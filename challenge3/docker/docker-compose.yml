@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx:latest
+    restart: always
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    depends_on:
+      - node-service
+
+  node-service:
+    build: ./api
+    restart: always
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./variables.env
+
+  db:
+    image: mariadb
+    env_file:
+      - ./variables.env
+    volumes:
+      - ./db/init:/docker-entrypoint-initdb.d
+      
